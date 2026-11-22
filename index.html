@@ -207,6 +207,71 @@ body{font-size:16px;line-height:1.78;background:var(--paper)}
  .hero-photo,.reveal,.explore-card img,.quran-image img{animation:none!important;transition:none!important}
 }
 
+
+/* Ajustements de finition : navigation, grille et commandes sobres */
+.theme,.menu{width:auto;min-width:44px;height:42px;padding:0 13px;border:1px solid #cbd4c8;border-radius:2px;background:transparent;color:var(--forest);font:700 .62rem var(--display);letter-spacing:.1em;text-transform:uppercase}
+.trust-row b{display:inline-block;width:5px;height:5px;flex:0 0 5px;border-radius:50%;background:var(--gold);font-size:0}
+.resource{min-width:0}
+.resource p,.resource-note{overflow-wrap:anywhere}
+.resource-source{flex-wrap:wrap}
+.source-kind{text-align:right}
+@media(max-width:1040px){
+ .header{height:76px}
+ .menu{display:inline-flex;align-items:center;justify-content:center}
+ .nav-cta{display:none}
+ .links{display:none;position:absolute;top:100%;left:0;right:0;padding:22px max(22px,calc((100vw - 720px)/2));background:var(--paper);border-bottom:1px solid var(--line);box-shadow:0 18px 30px rgba(20,45,35,.08);flex-direction:column;align-items:flex-start;gap:0}
+ .links a{width:100%;padding:13px 0;border-bottom:1px solid var(--line);font-size:.78rem}
+ .links.open{display:flex}
+ .nav-actions{gap:8px}
+}
+@media(max-width:700px){
+ .container{width:calc(100% - 32px)}
+ .header{height:68px}
+ .brand{gap:9px}
+ .brand-symbol{width:36px;height:36px}
+ .theme,.menu{height:38px;min-width:42px;padding:0 10px;font-size:.58rem}
+ .links{padding:12px 16px 18px}
+ .hero-photo{height:270px}
+ .hero-inner{margin-top:-22px}
+ .hero h1{font-size:clamp(2.8rem,12vw,4rem);overflow-wrap:normal}
+ .hero-lead{font-size:.9rem}
+ .hero-actions .btn{width:100%}
+ .trust{padding:16px 0}
+ .trust-row{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;font-size:.55rem;line-height:1.5}
+ .section{padding:64px 0}
+ .section-head h2,.intro-title h2,.quran-copy h2,.path-copy h2{font-size:clamp(2.35rem,10vw,3.25rem)}
+ .explore-card,.explore-card:nth-child(n){min-height:300px}
+ .explore-card:nth-child(1){min-height:340px}
+ .quran-image{height:330px}
+ .video-frame{width:100%}
+ .media-card{min-height:290px}
+ .resource{padding:23px 20px}
+ .resource-guide{padding:15px;font-size:.72rem}
+ .resource-meta span{font-size:.55rem}
+ .source-kind{text-align:left}
+ .library-controls{display:grid;gap:10px}
+ .search{min-width:0;margin:0}
+ .filters{flex-wrap:wrap;overflow:visible}
+ .filter{padding:9px 11px}
+ .path-box{padding:22px 18px}
+ .choice{gap:10px;padding:14px 12px}
+ .ai-card{padding:28px 20px}
+ .ai-preview{padding:19px}
+ .cta{padding:60px 0}
+ .modal{max-height:calc(100dvh - 32px);overflow:auto}
+}
+@media(max-width:380px){
+ .container{width:calc(100% - 26px)}
+ .brand{letter-spacing:.2em}
+ .nav-actions{gap:5px}
+ .theme,.menu{min-width:38px;padding:0 8px}
+ .trust-row{grid-template-columns:1fr}
+ .hero h1{font-size:2.7rem}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-photo{animation:none!important}
+}
+
 </style>
 </head>
 <body>
@@ -214,7 +279,7 @@ body{font-size:16px;line-height:1.78;background:var(--paper)}
 <header class="header"><div class="container nav">
 <a class="brand" href="#accueil" aria-label="QALB, accueil"><span class="brand-symbol">ق</span><span>QALB</span></a>
 <nav class="links" id="navLinks" aria-label="Navigation principale"><a href="#explorer">Explorer</a><a href="#coran">Le Coran</a><a href="#medias">Vidéothèque</a><a href="#parcours">Parcours</a><a href="#bibliotheque">Ressources</a><a href="#apropos">Notre approche</a></nav>
-<div class="nav-actions"><button class="theme" id="themeToggle" aria-label="Activer le thème sombre" title="Changer de thème">◐</button><a class="btn btn-lime nav-cta" href="#parcours">Commencer <span>↗</span></a><button class="menu" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">☰</button></div>
+<div class="nav-actions"><button class="theme" id="themeToggle" aria-label="Activer le thème sombre" title="Changer de thème">Thème</button><a class="btn btn-lime nav-cta" href="#parcours">Commencer <span>→</span></a><button class="menu" id="menuToggle" aria-label="Ouvrir le menu" aria-expanded="false">Menu</button></div>
 </div></header>
 <main id="contenu">
 <section class="hero" id="accueil">
@@ -226,7 +291,7 @@ body{font-size:16px;line-height:1.78;background:var(--paper)}
 <div class="hero-actions"><a class="btn btn-lime" href="#explorer">Explorer QALB <span>↗</span></a><a class="btn btn-outline-light" href="#coran">Découvrir le Coran <span>↓</span></a></div>
 <div class="hero-bottom"><span><i></i> Accessible aux débutants</span><span><i></i> Sources à l'honneur</span><span><i></i> Apprentissage progressif</span></div>
 </div></div></section>
-<div class="trust"><div class="container trust-row"><span><b>✳</b> APPRENDRE À SON RYTHME</span><span><b>✳</b> RÉFÉRENCES IDENTIFIABLES</span><span><b>✳</b> CONTENUS EN FRANÇAIS</span><span><b>✳</b> HUMILITÉ ET DISCERNEMENT</span></div></div>
+<div class="trust"><div class="container trust-row"><span><b aria-hidden="true"></b> APPRENDRE À SON RYTHME</span><span><b>✳</b> RÉFÉRENCES IDENTIFIABLES</span><span><b>✳</b> CONTENUS EN FRANÇAIS</span><span><b>✳</b> HUMILITÉ ET DISCERNEMENT</span></div></div>
 <section class="section"><div class="container intro-grid">
 <div class="intro-title reveal"><div class="eyebrow">Bienvenue dans QALB</div><h2>La connaissance mérite une expérience à sa hauteur.</h2><div class="intro-quote">« Apprendre avec humilité. Comprendre avec profondeur. Avancer avec sincérité. »</div></div>
 <div class="intro-text reveal delay-1"><p>QALB est un espace d'apprentissage islamique francophone. Il rassemble des portes d'entrée vers le Coran, la Sunna, la spiritualité et la pratique quotidienne, avec une attention particulière portée à la qualité des références.</p><p>Que tu commences ton cheminement ou que tu souhaites approfondir tes connaissances, l'objectif est le même : rendre le savoir plus accessible sans le simplifier à l'excès.</p><p>Chaque ressource publiée devra être contextualisée, référencée et présentée avec ses limites. La beauté de l'expérience ne doit jamais prendre le pas sur la rigueur du contenu.</p><a class="btn btn-outline" href="#apropos">Découvrir notre approche <span class="arrow">↗</span></a></div>
@@ -306,8 +371,8 @@ body{font-size:16px;line-height:1.78;background:var(--paper)}
 (()=> {
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const nav=$('#navLinks'),menu=$('#menuToggle');
-menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰';menu.setAttribute('aria-label',open?'Fermer le menu':'Ouvrir le menu')});
-$$('#navLinks a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}));
+menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Fermer':'Menu';menu.setAttribute('aria-label',open?'Fermer le menu':'Ouvrir le menu')});
+$$('#navLinks a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu'}));
 const theme=$('#themeToggle');let savedTheme='light';try{savedTheme=localStorage.getItem('qalb-theme')||'light'}catch(_){}if(savedTheme==='dark')document.body.classList.add('dark');
 const themeLabel=()=>theme.setAttribute('aria-label',document.body.classList.contains('dark')?'Activer le thème clair':'Activer le thème sombre');themeLabel();
 theme.addEventListener('click',()=>{document.body.classList.toggle('dark');try{localStorage.setItem('qalb-theme',document.body.classList.contains('dark')?'dark':'light')}catch(_){}themeLabel()});
