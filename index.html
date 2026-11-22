@@ -745,7 +745,7 @@ $('#aiInfoBtn').addEventListener('click',openModal);$('#modalClose').addEventLis
 $$('#explorer img, #medias img, #coran img').forEach(img=>img.addEventListener('error',()=>{img.style.display='none'}));
 
 /* Repère visuel du lien correspondant à la section consultée */
-const navLinks=$('#navLinks a');
+const navLinks=$$('#navLinks a');
 const navTargets=navLinks.map(link=>$(link.getAttribute('href'))).filter(Boolean);
 if('IntersectionObserver' in window){
  const navObserver=new IntersectionObserver(entries=>{
