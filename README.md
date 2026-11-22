@@ -1,46 +1,49 @@
-# QALB — Plateforme d’apprentissage islamique
+# QALB — site statique multi-pages
 
-QALB est un projet francophone qui vise à rendre l’apprentissage de l’islam plus accessible, progressif et attentif à la qualité des sources.
+Site francophone d'apprentissage de l'islam. HTML, CSS et JavaScript natifs, sans framework ni étape de build.
 
-## Version actuelle
+## Arborescence
 
-Cette version est une interface statique, mobile-first, réalisée en HTML, CSS et JavaScript natifs.
+- `index.html` : accueil
+- `parcours/`, `coran/`, `sunna/`, `foi-pratique/`, `videos/`, `bibliotheque/`, `approche/`, `qalb-ia/`, `faq/`, `contact/` : pages autonomes
+- `css/site.min.css` : styles centralisés, mobile-first et variables de thème
+- `js/app.min.js` : thème, menu accessible et FAQ
+- `js/library.js` : recherche et filtres
+- `js/recommendations.js` : recommandations du parcours
+- `js/site-config.js` : domaine canonique central
+- `data/ressources.json` : ressources et recommandations
+- `assets/img/` : identité SVG QALB
+- `robots.txt`, `sitemap.xml`, `404.html`, `render.yaml` : publication et SEO
 
-### Fonctionnalités de l’interface
-- Navigation responsive avec menu mobile.
-- Thème clair/sombre mémorisé dans le navigateur.
-- Parcours de découverte par grands domaines.
-- Recherche et filtres dans la bibliothèque de ressources.
-- Recommandations de premières lectures selon le sujet choisi.
-- FAQ accessible et fenêtre d’information sur QALB IA.
-- Métadonnées de partage social et structure sémantique de base.
+## Médias et identité visuelle
 
-## QALB IA : état et principes
+Les placeholders, les noms de fichiers photo/vidéo attendus, les recherches de médias et les commandes FFmpeg/WebP sont documentés dans [`MEDIAS.md`](MEDIAS.md). Les médias sont servis localement uniquement ; aucun hotlink d'image ou de vidéo n'est utilisé.
 
-La section QALB IA présente le concept, mais **aucun modèle d’intelligence artificielle n’est encore connecté**. La page n’envoie aucune question à un service externe et ne prétend pas fournir de réponses générées.
+## Prévisualisation locale
 
-Avant une mise en production de l’assistant, le projet devra intégrer :
-1. Un backend sécurisé (aucune clé API dans le navigateur).
-2. Une base documentaire vérifiée et versionnée : Coran, traductions, tafsirs et recueils de hadiths avec références.
-3. Une recherche documentaire (RAG) qui impose des sources pour les réponses factuelles.
-4. Des garde-fous : refus de fabriquer des références, signalement des incertitudes et redirection des questions de fatwa vers des personnes qualifiées.
-5. Une politique de confidentialité, une limitation de débit, une journalisation respectueuse des données et des tests d’évaluation.
-6. Une revue éditoriale et religieuse avant publication.
+Depuis la racine du dépôt :
 
-L’assistant doit être présenté comme un outil pédagogique, jamais comme un savant ou une autorité religieuse.
+```bash
+python3 -m http.server 8000
+```
 
-## Développement local
+Puis ouvrir `http://localhost:8000`.
 
-Aucune compilation n’est nécessaire pour cette version.
+## Changer de domaine
 
-- Ouvrir `index.html` dans un navigateur.
-- Pour un serveur local : `python3 -m http.server 8000`
-- Puis visiter `http://localhost:8000`.
+Modifier `siteUrl` dans `js/site-config.js`, puis remplacer l'ancien domaine dans les balises canonical/OG des pages, dans `robots.txt` et dans `sitemap.xml`. Les balises canonical sont présentes dans le HTML pour rester lisibles sans JavaScript.
 
-## Déploiement
+## Render
 
-Le site peut être servi comme un Static Site. Le répertoire de publication est la racine du dépôt (`.`) et aucune commande de build n’est requise.
+Site statique publié depuis la racine (`staticPublishPath: .`), sans commande de build. Les caches et redirections de chemins propres sont décrits dans `render.yaml`.
 
-## Contenus
+## Retour arrière
 
-Les cartes de la bibliothèque sont des sujets à développer, et non des cours complets. Les contenus religieux doivent être ajoutés avec des références précises, des traductions identifiées, le contexte nécessaire et une indication des divergences pertinentes.
+La refonte est isolée sur `refonte`. L'ancien `index.html` reste intact sur `main` et dans l'historique Git. Après une fusion squash approuvée, revenir en arrière avec :
+
+```bash
+git revert <SHA_DU_COMMIT_DE_FUSION>
+git push origin main
+```
+
+Ne fusionner la branche qu'après validation explicite.
