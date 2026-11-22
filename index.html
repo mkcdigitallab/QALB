@@ -790,6 +790,52 @@ body.dark .notice{background:#263b2e;color:#d7e2d7}
 body.dark .search input::placeholder{color:#a9b8ab}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
 
+
+/* QALB — thème clair/sombre : couche finale prioritaire */
+:root{color-scheme:light}
+body{background:#f5f3ec!important;color:#26352d!important}
+body.dark{color-scheme:dark;background:#12231c!important;color:#e8eee8!important}
+body.dark .header{background:rgba(18,35,28,.98)!important;border-color:#354b3e!important}
+body.dark .brand,body.dark .links{color:#e8eee8!important}
+body.dark .theme,body.dark .menu{background:#1b3025!important;color:#e8eee8!important;border-color:#587060!important}
+body.dark .trust,body.dark .explore,body.dark .path,body.dark .faq,body.dark .ai-section{background:#1b3026!important}
+body.dark .quran-feature,body.dark .library,body.dark .principles{background:#14271f!important}
+body.dark .section-head h2,body.dark .intro-title h2,body.dark .quran-copy h2,body.dark .path-copy h2,body.dark .principle h3,body.dark .faq-question,body.dark .path-box h3,body.dark .resource h3{color:#e8eee8!important}
+body.dark .section-head p,body.dark .intro-text p,body.dark .quran-copy>p,body.dark .path-copy>p,body.dark .path-box>p,body.dark .resource p,body.dark .principle p,body.dark .faq-answer{color:#b9c8bd!important}
+body.dark .path-box,body.dark .resource,body.dark .search input{background:#1c3026!important;color:#e8eee8!important;border-color:#3c5546!important}
+body.dark .choice,body.dark .filter{background:#20372b!important;color:#e8eee8!important;border-color:#45604f!important}
+body.dark .choice:hover,body.dark .choice.active{background:#2a4936!important;border-color:#91ad91!important}
+body.dark .filter.active,body.dark .filter:hover{background:#dce8c6!important;color:#183f32!important;border-color:#dce8c6!important}
+body.dark .resource-guide,body.dark .arabic-panel{background:#243c2e!important;color:#d5e1d6!important;border-color:#c5a66d!important}
+body.dark .resource-guide strong,body.dark .source-name,body.dark .resource-type{color:#e8eee8!important}
+body.dark .resource-meta span{background:#2b4534!important;color:#dce8dc!important}
+body.dark .resource-note{color:#e3cda5!important}
+body.dark .resource-open{color:#dce8c6!important}
+body.dark .arabic{color:#f0f3e9!important}
+body.dark .translation,body.dark .reference{color:#c5d4c8!important}
+body.dark .faq-item,body.dark .principle{border-color:#3b5545!important}
+body.dark .image-caption{background:#1c3026!important;color:#e8eee8!important}
+body.dark .hero{background:#122b20!important}
+body.dark .hero:before{background:linear-gradient(90deg,rgba(8,27,20,.97),rgba(10,35,25,.82) 58%,rgba(10,35,25,.48))!important}
+body.dark .hero h1,body.dark .hero .eyebrow,body.dark .hero-lead,body.dark .hero-bottom{color:#f0f3eb!important}
+body.dark .hero h1 em{color:#dce8bd!important}
+body.dark .hero .btn-lime{background:#dce8c6!important;color:#183f32!important}
+body.dark .hero .btn-outline-light{color:#f0f3eb!important;border-color:#9aafa0!important}
+body.dark .ai-card{background:linear-gradient(130deg,#10271e,#234a36)!important}
+body.dark .ai-copy h2{color:#fff!important}
+body.dark .ai-copy p,body.dark .ai-list{color:#dce8df!important}
+body.dark .ai-preview{background:#f7f8f2!important;color:#25332b!important}
+body.dark .ai-preview .bubble{color:#25332b!important}
+body.dark .cta{background:#10271e!important}
+body.dark .cta h2,body.dark .media .section-head h2{color:#fff!important}
+body.dark .cta p,body.dark .media .section-head p{color:#d7e2dc!important}
+body.dark .footer{background:#0b1e17!important;color:#e1e9e1!important}
+body.dark .modal{background:#1c3026!important;color:#e8eee8!important}
+body.dark .modal h2{color:#e8eee8!important}
+body.dark .modal p{color:#b9c8bd!important}
+body.dark .notice{background:#2a4032!important;color:#dce8dc!important}
+body.dark .search input::placeholder{color:#aebdb0!important}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
@@ -893,9 +939,23 @@ const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelect
 const nav=$('#navLinks'),menu=$('#menuToggle');
 menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Fermer':'Menu';menu.setAttribute('aria-label',open?'Fermer le menu':'Ouvrir le menu')});
 $$('#navLinks a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu'}));
-const theme=$('#themeToggle');let savedTheme='light';try{savedTheme=localStorage.getItem('qalb-theme')||'light'}catch(_){}if(savedTheme==='dark')document.body.classList.add('dark');
-const themeLabel=()=>theme.setAttribute('aria-label',document.body.classList.contains('dark')?'Activer le thème clair':'Activer le thème sombre');themeLabel();
-theme.addEventListener('click',()=>{document.body.classList.toggle('dark');try{localStorage.setItem('qalb-theme',document.body.classList.contains('dark')?'dark':'light')}catch(_){}themeLabel()});
+const theme=$('#themeToggle');
+let savedTheme='light';
+try{savedTheme=localStorage.getItem('qalb-theme')||'light'}catch(_){}
+function applyTheme(mode){
+  const isDark=mode==='dark';
+  document.body.classList.toggle('dark',isDark);
+  theme.textContent=isDark?'Clair':'Sombre';
+  theme.setAttribute('aria-label',isDark?'Activer le thème clair':'Activer le thème sombre');
+  theme.setAttribute('aria-pressed',String(isDark));
+  theme.title=isDark?'Passer au thème clair':'Passer au thème sombre';
+}
+applyTheme(savedTheme);
+theme.addEventListener('click',()=>{
+  const next=document.body.classList.contains('dark')?'light':'dark';
+  applyTheme(next);
+  try{localStorage.setItem('qalb-theme',next)}catch(_){}
+});
 const recs={
 quran:['Commencer par Al-Fâtiha','Lis la sourate dans son intégralité, compare une traduction identifiée et consulte une explication reconnue. La traduction aide à comprendre le sens, mais ne remplace pas le texte arabe.','https://quran.com/fr/1','Ouvrir Al-Fâtiha'],
 prayer:['Comprendre les étapes de la prière','Commence par étudier la purification, les horaires et les étapes de la salat à partir d’un enseignement structuré. Pour une situation personnelle, demande conseil à une personne qualifiée.','#bibliotheque','Voir les ressources de pratique'],
