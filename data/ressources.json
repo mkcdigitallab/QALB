@@ -9,7 +9,7 @@
   ],
   "recommendations": [
     {"id":"start","title":"Je débute","description":"Commencer par les fondements, avancer progressivement et noter les questions à approfondir.","url":"/parcours/"},
-    {"id":"quran","title":"Je veux lire le Coran","description":"Découvrir Al-Fâtiha, la lecture et les traductions identifiées.","url":"../coran/"},
-    {"id":"practice","title":"Je veux apprendre la pratique","description":"Étudier les bases de la purification et de la prière avec des ressources vérifiées.","url":"../pratique/"}
+    {"id":"quran","title":"Je veux lire le Coran","description":"Découvrir Al-Fâtiha, la lecture et les traductions identifiées.","url":"/coran/"},
+    {"id":"practice","title":"Je veux apprendre la pratique","description":"Étudier les bases de la purification et de la prière avec des ressources vérifiées.","url":"/foi-pratique/"}
   ]
 }
