@@ -318,7 +318,7 @@ search.addEventListener('input',filterResources);filters.forEach(b=>b.addEventLi
 $$('.faq-question').forEach(b=>b.addEventListener('click',()=>{const item=b.closest('.faq-item'),open=item.classList.toggle('open');b.setAttribute('aria-expanded',String(open))}));
 const modal=$('#aiModal'),openModal=()=>{modal.classList.add('open');document.body.classList.add('lock');$('#modalClose').focus()},closeModal=()=>{modal.classList.remove('open');document.body.classList.remove('lock');$('#aiInfoBtn').focus()};
 $('#aiInfoBtn').addEventListener('click',openModal);$('#modalClose').addEventListener('click',closeModal);$('#modalOk').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
-$('#explorer img, #medias img, #coran img').forEach(img=>img.addEventListener('error',()=>{img.style.display='none'}));
+$$('#explorer img, #medias img, #coran img').forEach(img=>img.addEventListener('error',()=>{img.style.display='none'}));
 $('#year').textContent=new Date().getFullYear();
 if('IntersectionObserver'in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});$$('.reveal').forEach(el=>observer.observe(el))}else{$$('.reveal').forEach(el=>el.classList.add('visible'))}
 })();
