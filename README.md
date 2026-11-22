@@ -15,6 +15,10 @@ Site francophone d'apprentissage de l'islam. HTML, CSS et JavaScript natifs, san
 - `assets/img/` : identité SVG QALB
 - `robots.txt`, `sitemap.xml`, `404.html`, `render.yaml` : publication et SEO
 
+## Médias et identité visuelle
+
+Les placeholders, les noms de fichiers photo/vidéo attendus, les recherches de médias et les commandes FFmpeg/WebP sont documentés dans [`MEDIAS.md`](MEDIAS.md). Les médias sont servis localement uniquement ; aucun hotlink d'image ou de vidéo n'est utilisé.
+
 ## Prévisualisation locale
 
 Depuis la racine du dépôt :
