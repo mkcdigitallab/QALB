@@ -560,6 +560,54 @@ body.dark .nav-cta:hover{background:#eff5df;border-color:#eff5df;color:#142f25}
   .nav-actions{gap:5px}
 }
 
+
+/* Liens de navigation : hiérarchie, contraste et repère de page active */
+@media(min-width:960px){
+  .links{gap:3px}
+  .links a{
+    min-height:40px;padding:9px 12px;margin:0 1px;
+    border:1px solid transparent;border-radius:7px;
+    color:#294b3b;background:transparent;
+    font-size:.82rem;font-weight:700;letter-spacing:.005em;
+  }
+  .links a:hover{
+    color:#123b2c;background:#e5ecdf;border-color:#d3dfd1;
+    transform:translateY(-1px);
+  }
+  .links a[aria-current="location"]{
+    color:#fff;background:#176b49;border-color:#176b49;
+    box-shadow:0 3px 9px rgba(23,107,73,.18);
+  }
+}
+@media(max-width:959px){
+  .links.open{gap:5px;padding:13px 18px 18px}
+  .links a{
+    min-height:49px;padding:12px 14px;margin:2px 0;
+    border:1px solid #d5dfd4;border-radius:7px;
+    background:#fffefa;color:#234b38;
+    font-size:.94rem;font-weight:700;
+  }
+  .links a:hover,.links a:focus-visible{
+    background:#e9eee6;border-color:#7f9d86;color:#123b2c;
+  }
+  .links a[aria-current="location"]{
+    background:#176b49;border-color:#176b49;color:#fff;
+  }
+}
+body.dark .links a{color:#e2eee3}
+body.dark .links a:hover{
+  background:#2a4433;border-color:#607b64;color:#fff;
+}
+body.dark .links a[aria-current="location"]{
+  background:#dce8c6;border-color:#dce8c6;color:#183f32;
+}
+@media(max-width:959px){
+  body.dark .links{background:#172920;border-color:#3b5143}
+  body.dark .links a{background:#20372a;border-color:#48614f;color:#edf4ed}
+  body.dark .links a:hover{background:#2b4434;border-color:#a9c5a8;color:#fff}
+  body.dark .links a[aria-current="location"]{background:#dce8c6;border-color:#dce8c6;color:#183f32}
+}
+
 </style>
 </head>
 <body>
@@ -695,6 +743,22 @@ $$('.faq-question').forEach(b=>b.addEventListener('click',()=>{const item=b.clos
 const modal=$('#aiModal'),openModal=()=>{modal.classList.add('open');document.body.classList.add('lock');$('#modalClose').focus()},closeModal=()=>{modal.classList.remove('open');document.body.classList.remove('lock');$('#aiInfoBtn').focus()};
 $('#aiInfoBtn').addEventListener('click',openModal);$('#modalClose').addEventListener('click',closeModal);$('#modalOk').addEventListener('click',closeModal);modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
 $$('#explorer img, #medias img, #coran img').forEach(img=>img.addEventListener('error',()=>{img.style.display='none'}));
+
+/* Repère visuel du lien correspondant à la section consultée */
+const navLinks=$('#navLinks a');
+const navTargets=navLinks.map(link=>$(link.getAttribute('href'))).filter(Boolean);
+if('IntersectionObserver' in window){
+ const navObserver=new IntersectionObserver(entries=>{
+  const visible=entries.filter(entry=>entry.isIntersecting).sort((a,b)=>b.intersectionRatio-a.intersectionRatio)[0];
+  if(!visible)return;
+  navLinks.forEach(link=>{
+   if(link.getAttribute('href')==='#'+visible.target.id)link.setAttribute('aria-current','location');
+   else link.removeAttribute('aria-current');
+  });
+ },{rootMargin:'-22% 0px -62% 0px',threshold:[0,.1,.25,.5]});
+ navTargets.forEach(target=>navObserver.observe(target));
+}
+
 $('#year').textContent=new Date().getFullYear();
 if('IntersectionObserver'in window&&!window.matchMedia('(prefers-reduced-motion: reduce)').matches){const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.12});$$('.reveal').forEach(el=>observer.observe(el))}else{$$('.reveal').forEach(el=>el.classList.add('visible'))}
 })();
