@@ -709,6 +709,36 @@ body.dark .links a[aria-current="location"]{
  .menu-heading,.menu-index,.menu-footer{display:none}
 }
 
+
+/* Menu latéral coulissant : panneau compact, ancré au bord droit */
+@media(max-width:767px){
+ body.mobile-pages .links{
+   inset:0 0 0 auto;
+   width:min(88vw,390px);
+   height:100vh;height:100dvh;
+   display:flex;
+   justify-content:flex-start;
+   padding:88px 23px 28px;
+   overflow-y:auto;
+   border-left:1px solid rgba(220,232,198,.2);
+   border-radius:18px 0 0 18px;
+   box-shadow:-18px 0 55px rgba(0,0,0,.28),0 0 0 100vmax rgba(5,17,12,.58);
+   transform:translateX(105%);
+   visibility:hidden;
+   pointer-events:none;
+   transition:transform .32s cubic-bezier(.22,.8,.25,1),visibility .32s;
+ }
+ body.mobile-pages .links.open{
+   display:flex;
+   transform:translateX(0);
+   visibility:visible;
+   pointer-events:auto;
+ }
+ body.mobile-pages .menu-heading{margin-bottom:12px}
+ body.mobile-pages .links a{min-height:49px}
+ body.mobile-pages .menu-footer{margin-top:16px}
+}
+
 </style>
 </head>
 <body>
