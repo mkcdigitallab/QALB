@@ -20,3 +20,44 @@ services:
       - path: /*
         name: Cache-Control
         value: public, max-age=0, must-revalidate
+    routes:
+      - type: redirect
+        source: /parcours
+        destination: /parcours/
+        status: 301
+      - type: redirect
+        source: /coran
+        destination: /coran/
+        status: 301
+      - type: redirect
+        source: /sunna
+        destination: /sunna/
+        status: 301
+      - type: redirect
+        source: /foi-pratique
+        destination: /foi-pratique/
+        status: 301
+      - type: redirect
+        source: /videos
+        destination: /videos/
+        status: 301
+      - type: redirect
+        source: /bibliotheque
+        destination: /bibliotheque/
+        status: 301
+      - type: redirect
+        source: /approche
+        destination: /approche/
+        status: 301
+      - type: redirect
+        source: /qalb-ia
+        destination: /qalb-ia/
+        status: 301
+      - type: redirect
+        source: /faq
+        destination: /faq/
+        status: 301
+      - type: redirect
+        source: /contact
+        destination: /contact/
+        status: 301
